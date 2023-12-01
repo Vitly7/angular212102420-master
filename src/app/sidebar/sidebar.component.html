@@ -726,7 +726,21 @@
           </a>
         </li>
       </ul>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a
+            [routerLink]="['/login']"
+            routerLinkActive="router-link-active"
+            class="nav-link {{ moduleName == 'login' ? 'active' : '' }}"
+          >
+            <button class="btn btn-primary btn-block" (click)="logOut()">
+              LogOut
+            </button>
+          </a>
+        </li>
+      </ul>
     </nav>
+
     <!-- /.sidebar-menu -->
   </div>
   <!-- /.sidebar -->
