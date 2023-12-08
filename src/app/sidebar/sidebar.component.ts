@@ -39,7 +39,7 @@ export class SidebarComponent {
       console.log(data);
       var row = data[0];
 
-      sessionStorage.removeItem('userId', userId);
+      // sessionStorage.removeItem('userId', userId);
 
       console.log('session data berhasil dihapus');
 
