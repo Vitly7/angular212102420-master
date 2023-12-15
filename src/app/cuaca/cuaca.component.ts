@@ -89,7 +89,7 @@ export class CuacaComponent implements OnInit, AfterViewInit {
 
           var temp = tempMin + '°C - ' + tempMax + '°C';
 
-          var row = [element.dt.txt, iconUrl, cuacaDeskripsi, temp];
+          var row = [element.dt_txt, iconUrl, cuacaDeskripsi, temp];
 
           this.table1.row.add(row);
         });
