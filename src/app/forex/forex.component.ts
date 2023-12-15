@@ -7,8 +7,6 @@ declare const $: any;
 
 @Component({
   selector: 'app-forex',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './forex.component.html',
   styleUrl: './forex.component.css',
 })
@@ -37,7 +35,7 @@ export class ForexComponent implements OnInit, AfterViewInit {
     console.log('getData()');
 
     var url =
-      'https://openexchangerates.org/api/latest.json?app_id=9d00a8c000044d6a358ddf3b33b49c2';
+      'https://openexchangerates.org/api/latest.json?app_id=9d00a8c0800644d6a358ddf3b33b49c2';
 
     this.http.get(url).subscribe((data: any) => {
       console.log(data);
@@ -73,6 +71,36 @@ export class ForexComponent implements OnInit, AfterViewInit {
       var btc2 = formatCurrency(btc, 'en-US', '', 'BTC');
       console.log('BTC : ', btc2);
       row = [5, 'BTC', btc2];
+      this._table1.row.add(row);
+
+      var aed = rates.IDR / rates.AED;
+      var aed2 = formatCurrency(aed, 'en-US', '', 'AED');
+      console.log('AED : ', aed2);
+      row = [6, 'AED', aed2];
+      this._table1.row.add(row);
+
+      var bam = rates.IDR / rates.BAM;
+      var bam2 = formatCurrency(bam, 'en-US', '', 'BAM');
+      console.log('BAM : ', bam2);
+      row = [7, 'BAM', bam2];
+      this._table1.row.add(row);
+
+      var bif = rates.IDR / rates.BIF;
+      var bif2 = formatCurrency(bif, 'en-US', '', 'BIF');
+      console.log('BIF : ', bif2);
+      row = [8, 'BIF', bif2];
+      this._table1.row.add(row);
+
+      var clf = rates.IDR / rates.CLF;
+      var clf2 = formatCurrency(clf, 'en-US', '', 'CLF');
+      console.log('CLF : ', clf2);
+      row = [9, 'CLF', clf2];
+      this._table1.row.add(row);
+
+      var clp = rates.IDR / rates.CLP;
+      var clp2 = formatCurrency(clp, 'en-US', '', 'CLP');
+      console.log('CLP : ', clp2);
+      row = [10, 'CLP', clp2];
       this._table1.row.add(row);
 
       this._table1.draw(false);
