@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate : [otentikasiGuard] },
   { path: 'dashboard2', component: Dashboard2Component, canActivate : [otentikasiGuard] },
   { path: 'dashboard3', component: Dashboard3Component },
-  { path: "forex", component : ForexComponent, canActivate : [otentikasiGuard]},
+  { path: 'forex', component : ForexComponent, canActivate : [otentikasiGuard]},
   { path: 'register', component: RegisterComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'mahasiswa', component: MahasiswaComponent, canActivate : [otentikasiGuard] },
