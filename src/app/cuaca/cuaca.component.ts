@@ -5,25 +5,26 @@ declare const $: any;
 declare const moment: any;
 
 @Component({
-  selector: 'app-cuaca',
+  selector: 'app-cuaca, app-sunrise-sunset',
   templateUrl: './cuaca.component.html',
   styleUrl: './cuaca.component.css',
 })
 export class CuacaComponent implements OnInit, AfterViewInit {
   private table1: any;
+  private table2: any;
 
   constructor(private renderer: Renderer2, private http: HttpClient) {}
 
   ngAfterViewInit(): void {
-    this.renderer.removeClass(document.body, 'sidebarr-open');
+    this.renderer.removeClass(document.body, 'sidebar-open');
     this.renderer.addClass(document.body, 'sidebar-closed');
 
-    this.table1 = $("#table1").DataTable({
-      "columnDefs": [
+    this.table1 = $('#table1').DataTable({
+      columnDefs: [
         {
-          "targets": 0,
-          "render": function (data: string) {
-            var waktu = moment(data + " UTC");
+          targets: 0,
+          render: function (data: string) {
+            var waktu = moment(data + ' UTC');
             console.log(waktu);
 
             var html =
@@ -32,7 +33,7 @@ export class CuacaComponent implements OnInit, AfterViewInit {
               waktu.local().format('HH:mm') +
               ' WIB';
             return html;
-          }
+          },
         },
         {
           targets: 1,
@@ -53,6 +54,27 @@ export class CuacaComponent implements OnInit, AfterViewInit {
         },
       ],
     });
+
+    // this.table2 = $('#table2').DataTable({
+    //   columnDefs: [
+    //     {
+    //       targets: 3,
+    //       render: function (timestamp: number): string {
+    //         const sunriseTimestamp: number = 1704408227;
+    //         const sunsetTimestamp: number = 1704451866;
+    //         const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
+    //         return date.toLocaleTimeString();
+
+    //         var html =
+    //           waktu.local().format('YYYY-MM-DD') +
+    //           '<br />' +
+    //           waktu.local().format('HH:mm') +
+    //           ' WIB';
+    //         return html;
+    //       },
+    //     },
+    //   ],
+    // });
 
     this.bind_table1();
   }
