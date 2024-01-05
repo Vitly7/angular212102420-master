@@ -55,26 +55,26 @@ export class CuacaComponent implements OnInit, AfterViewInit {
       ],
     });
 
-    // this.table2 = $('#table2').DataTable({
-    //   columnDefs: [
-    //     {
-    //       targets: 3,
-    //       render: function (timestamp: number): string {
-    //         const sunriseTimestamp: number = 1704408227;
-    //         const sunsetTimestamp: number = 1704451866;
-    //         const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
-    //         return date.toLocaleTimeString();
+    this.table2 = $('#table2').DataTable({s
+      columnDefs: [
+        {
+          targets: 3,
+          render: function (data: string) {
+            const sunriseTimestamp: number = 1704408227;
+            const sunsetTimestamp: number = 1704451866;
+            const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
+            return date.toLocaleTimeString();
 
-    //         var html =
-    //           waktu.local().format('YYYY-MM-DD') +
-    //           '<br />' +
-    //           waktu.local().format('HH:mm') +
-    //           ' WIB';
-    //         return html;
-    //       },
-    //     },
-    //   ],
-    // });
+            var html =
+              waktu.local().format('YYYY-MM-DD') +
+              '<br />' +
+              waktu.local().format('HH:mm') +
+              ' WIB';
+            return html;
+          },
+        },
+      ],
+    });
 
     this.bind_table1();
   }
@@ -92,6 +92,11 @@ export class CuacaComponent implements OnInit, AfterViewInit {
 
         this.table1.clear();
 
+        var city = data.city;
+        console.log(city);
+
+        this.table2.clear();
+        
         list.forEach((element: any) => {
           var weather = element.weather[0];
           console.log(weather);
@@ -114,6 +119,18 @@ export class CuacaComponent implements OnInit, AfterViewInit {
           var row = [element.dt_txt, iconUrl, cuacaDeskripsi, temp];
 
           this.table1.row.add(row);
+        });
+
+        city.forEach((element: any) => {
+          var sunrise = element.sunrise[6];
+          console.log(sunrise);
+
+          var sunset = element.sunset[7];
+          console.log(sunset);
+
+          var row = [element.sunrise, element.sunset];
+
+          this.table2.row.add(row);
         });
 
         this.table1.draw(false);
