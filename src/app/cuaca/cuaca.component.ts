@@ -55,25 +55,29 @@ export class CuacaComponent implements OnInit, AfterViewInit {
       ],
     });
 
-    this.table2 = $('#table2').DataTable({s
+    this.table2 = $('#table2').DataTable({
       columnDefs: [
         {
-          targets: 3,
+          targets: 0,
           render: function (data: string) {
-            const sunriseTimestamp: number = 1704408227;
-            const sunsetTimestamp: number = 1704451866;
-            const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
-            return date.toLocaleTimeString();
+            var sunrise = moment(data);
+            console.log(sunrise);
 
-            var html =
-              waktu.local().format('YYYY-MM-DD') +
-              '<br />' +
-              waktu.local().format('HH:mm') +
-              ' WIB';
+            var html = '<strong>' + sunrise;
             return html;
           },
         },
-      ],
+        {
+          targets: 1,
+          render: function (data: string) {
+            var sunset = moment(data);
+            console.log(sunset);
+
+            var html = '<strong>' + sunset;
+            return html;
+          },
+        },
+      ]
     });
 
     this.bind_table1();
@@ -92,10 +96,7 @@ export class CuacaComponent implements OnInit, AfterViewInit {
 
         this.table1.clear();
 
-        var city = data.city;
-        console.log(city);
-
-        this.table2.clear();
+        
         
         list.forEach((element: any) => {
           var weather = element.weather[0];
@@ -121,27 +122,44 @@ export class CuacaComponent implements OnInit, AfterViewInit {
           this.table1.row.add(row);
         });
 
-        city.forEach((element: any) => {
-          var sunrise = element.sunrise[6];
-          console.log(sunrise);
-
-          var sunset = element.sunset[7];
-          console.log(sunset);
-
-          var row = [element.sunrise, element.sunset];
-
-          this.table2.row.add(row);
-        });
-
+        
         this.table1.draw(false);
-      });
-  }
 
-  kelvinToCelcius(kelvin: any): any {
+        
+      });
+    }
+    
+    kelvinToCelcius(kelvin: any): any {
     var celcius = kelvin - 273.15;
     celcius = Math.round(celcius * 100) / 100;
     return celcius;
   }
 
+  bind_table2(): void {
+    this.http
+      .get(
+        'https://api.openweathermap.org/data/2.5/forecast?id=1630789&appid=378ab26e0abd9a837003aa346de616a6'
+      )
+      .subscribe((data: any) => {
+        console.log(data);
+        var city = data.city;
+        console.log(city);
+
+        this.table2.clear();
+        
+        city.forEach((data: any) => {
+          const sunriseTime = city.sunrise;
+          const sunsetTime = city.sunset;
+    
+          var row = [
+            sunriseTime, sunsetTime
+          ];
+    
+          this.table2.row.add(row);
+        });
+        this.table2.draw(false);
+      });
+    }
+  
   ngOnInit(): void {}
 }
