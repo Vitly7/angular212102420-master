@@ -18,6 +18,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpClientModule } from '@angular/common/http';
 import { ForexComponent } from './forex/forex.component';
 import { CuacaComponent } from './cuaca/cuaca.component';
+import { AndroidComponent } from './android/android.component';
 
 
 
@@ -37,6 +38,7 @@ import { CuacaComponent } from './cuaca/cuaca.component';
     MahasiswaComponent,
     ForexComponent,
     CuacaComponent,
+    AndroidComponent,
   ],
   imports: [
     BrowserModule,

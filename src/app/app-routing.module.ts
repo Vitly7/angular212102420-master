@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { Dashboard2Component } from './dashboard2/dashboard2.component';
 import { Dashboard3Component } from './dashboard3/dashboard3.component';
 import { MahasiswaComponent } from './mahasiswa/mahasiswa.component';
+import { AndroidComponent } from './android/android.component';
 import { otentikasiGuard } from './otentikasi.guard';
 import { ForexComponent } from './forex/forex.component';
 import { CuacaComponent } from './cuaca/cuaca.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'mahasiswa', component: MahasiswaComponent, canActivate : [otentikasiGuard] },
+  { path: 'android', component: AndroidComponent},
 ];
 
 @NgModule({
